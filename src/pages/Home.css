@@ -1,0 +1,184 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  max-width: 860px;
+  margin: 1.25rem auto 0;
+}
+
+.home-header {
+  max-width: 640px;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.hero-title {
+  max-width: 600px;
+  font-size: clamp(2.8rem, 6vw, 4.25rem);
+  letter-spacing: -0.055em;
+  line-height: 1.04;
+}
+
+.hero-subtitle {
+  margin-top: 1.15rem;
+  max-width: 470px;
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+}
+
+.section-title {
+  margin-bottom: 1.1rem;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+}
+
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.lesson-card {
+  --card-accent: var(--fun-orange);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+  border-radius: 24px;
+  box-shadow: 0 3px 12px var(--color-shadow);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.lesson-card:hover,
+.lesson-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--card-accent) 50%, var(--color-surface-border));
+  box-shadow: 0 10px 24px var(--color-shadow);
+}
+
+.lesson-card-number {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  color: var(--card-accent);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.lesson-card-equations {
+  --card-accent: var(--fun-teal);
+}
+
+.lesson-card-picture {
+  position: relative;
+  width: 100%;
+  padding: 8px 12px 42px;
+  color: var(--card-accent);
+  background:
+    radial-gradient(ellipse at 50% 40%, color-mix(in srgb, var(--card-accent) 14%, transparent), transparent 70%),
+    color-mix(in srgb, var(--card-accent) 4%, var(--color-bg));
+  border-bottom: 1px solid var(--color-surface-border);
+}
+
+.lesson-card-picture svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 240ms ease;
+}
+
+.lesson-card:hover .lesson-card-picture svg {
+  transform: scale(1.035);
+}
+
+.lesson-card-tag {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 4px 12px;
+  border: 1px solid color-mix(in srgb, var(--card-accent) 22%, transparent);
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.lesson-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  gap: 0.6rem;
+  padding: 1.5rem;
+}
+
+.lesson-card-subject {
+  color: var(--color-text-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.lesson-card h3 {
+  font-size: 1.8rem;
+}
+
+.lesson-card-description {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.lesson-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-top: 0.75rem;
+  margin-top: auto;
+  color: var(--card-accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lesson-card,
+  .lesson-card-picture svg,
+  .lesson-card-cta span {
+    transition: none;
+  }
+}
+
+.lesson-card-cta span {
+  transition: transform 0.18s ease;
+}
+
+.lesson-card:hover .lesson-card-cta span {
+  transform: translateX(3px);
+}
+
+@media (max-width: 640px) {
+  .home {
+    gap: 3rem;
+    margin-top: 0.5rem;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .lesson-grid {
+    grid-template-columns: 1fr;
+  }
+}

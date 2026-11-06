@@ -1,0 +1,195 @@
+.lesson-stage-practice .fractions-title {
+  font-size: clamp(2.5rem, 9vw, 9rem);
+}
+
+.lesson-stage-practice .fractions-title span {
+  white-space: pre;
+}
+
+.practice-scene {
+  position: absolute;
+  inset: 22% 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 3svh, 2rem);
+  padding: 1rem;
+  animation: practice-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.practice-question {
+  text-align: center;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  line-height: 1.4;
+}
+
+.practice-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: min(100%, 900px);
+}
+
+.practice-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 1.2rem;
+  border: 2px solid var(--color-surface-border);
+  border-radius: var(--border-radius);
+  background: var(--color-surface);
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  line-height: 1.5;
+  text-align: left;
+  transition: border-color 200ms ease, background-color 200ms ease, transform 200ms ease;
+}
+
+.practice-option:hover:not(:disabled),
+.practice-option:focus-visible {
+  border-color: var(--color-primary);
+  background: var(--color-surface-hover);
+  transform: translateY(-2px);
+}
+
+.practice-option-letter {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .lesson-stage-practice:has(.practice-definition) {
+    min-height: max(100svh, 850px);
+  }
+
+  .practice-definition {
+    gap: 1rem;
+  }
+
+  .practice-options {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .practice-option {
+    padding: 0.8rem;
+  }
+}
+
+.practice-fraction {
+  display: grid;
+  justify-items: center;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12svh, 8rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.practice-number {
+  min-width: 1.35em;
+  padding: 0.08em 0.2em;
+  border: 2px solid transparent;
+  border-radius: 0.15em;
+  transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+
+.practice-numerator { color: var(--fun-pink); }
+.practice-denominator { color: var(--fun-teal); }
+
+.practice-number:hover:not(:disabled),
+.practice-number:focus-visible {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  border-color: currentColor;
+  transform: scale(1.05);
+}
+
+.practice-fraction-line {
+  width: 90%;
+  height: 5px;
+  margin: 0.08em 0;
+  border-radius: 999px;
+  background: var(--fun-purple);
+}
+
+.practice-feedback-area {
+  min-height: 5rem;
+  display: grid;
+  place-items: start center;
+  width: 100%;
+}
+
+.practice-feedback {
+  padding: 0.7rem 1.3rem;
+  border: 2px solid currentColor;
+  border-radius: 14px;
+  font-size: clamp(1rem, 2.8vw, 1.6rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.practice-correct {
+  color: var(--color-success);
+  background: color-mix(in srgb, var(--color-success) 14%, var(--color-bg));
+  animation: correct-bounce 950ms both;
+}
+
+.practice-incorrect {
+  color: var(--color-error);
+  background: color-mix(in srgb, var(--color-error) 12%, var(--color-bg));
+  animation: incorrect-shake 450ms ease both;
+}
+
+.pizza-rain {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.pizza-rain svg {
+  position: absolute;
+  top: 0;
+  left: var(--rain-x);
+  width: clamp(48px, 7vw, 100px);
+  animation: pizza-fall 2100ms var(--rain-delay) ease-in both;
+}
+
+@keyframes practice-enter {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes correct-bounce {
+  0% { opacity: 0; transform: translateY(-45px) scale(0.9); }
+  30% { opacity: 1; transform: translateY(0) scale(1.06, 0.94); }
+  50% { transform: translateY(-24px) scale(0.98, 1.02); }
+  70% { transform: translateY(0) scale(1.03, 0.97); }
+  85% { transform: translateY(-9px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes incorrect-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
+
+@keyframes pizza-fall {
+  from { transform: translate(-50%, -120px) rotate(0); }
+  to { transform: translate(-50%, calc(100svh + 120px)) rotate(var(--rain-turn)); }
+}
+
+@media (max-height: 550px) {
+  .lesson-stage-practice { min-height: 600px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .practice-scene,
+  .practice-feedback {
+    animation: none;
+  }
+  .practice-number,
+  .practice-option { transition: none; }
+  .pizza-rain { display: none; }
+}

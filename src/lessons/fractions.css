@@ -1,0 +1,736 @@
+.main-content.main-content-lesson {
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  padding: 0;
+  min-height: 100svh;
+}
+
+.lesson-stage {
+  --person-offset: min(16vw, 180px);
+  --person-width: min(14vw, 170px);
+  position: relative;
+  display: grid;
+  flex: 1;
+  place-items: center;
+  width: 100%;
+  min-width: 0;
+  overflow: clip;
+}
+
+.fractions-title-position {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: top 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fractions-title-position-top {
+  top: max(80px, 12svh);
+  transform: translate(-50%, -50%) scale(0.42);
+}
+
+.pizza-position {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: left 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    top 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pizza-position-sharing {
+  left: 28%;
+  top: 61%;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.pizza-entrance {
+  animation: pizza-appear 700ms 250ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pizza-wheel-interactive {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M4 35L20 9Q26 2 32 4L24 25Z' fill='%23edf3ff' stroke='%23111528' stroke-width='2'/%3E%3Cpath d='M24 24L35 11' stroke='%23533835' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E") 4 35, crosshair;
+  touch-action: pan-y;
+}
+
+.pizza-cut-preview {
+  pointer-events: none;
+}
+
+.sharing-question {
+  position: absolute;
+  top: 23%;
+  left: 50%;
+  width: min(90%, 850px);
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: clamp(1.25rem, 2.6vw, 2.2rem);
+  line-height: 1.3;
+  animation: sharing-appear 500ms ease both;
+}
+
+.sharing-people {
+  position: absolute;
+  top: 61%;
+  left: 73%;
+  display: flex;
+  gap: clamp(0.5rem, 2vw, 2rem);
+  transform: translate(-50%, -50%);
+  animation: sharing-appear 700ms ease both;
+}
+
+.person-bust {
+  width: var(--person-width);
+  height: auto;
+}
+
+.sharing-person {
+  display: grid;
+  place-items: center;
+  transition: transform 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sharing-people {
+  transition: left 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+    top 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+    gap 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sharing-people-shared {
+  left: 50%;
+  top: 40%;
+  width: calc(2 * var(--person-offset) + var(--person-width));
+  justify-content: space-between;
+  gap: 0;
+}
+
+.sharing-people-shared .sharing-person {
+  transform: scale(1.15);
+}
+
+.pizza-share {
+  --share-x: calc(50% - var(--person-offset));
+  position: absolute;
+  top: 70%;
+  left: var(--share-x);
+  width: min(30vw, 28svh, 280px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: pizza-share-travel 1200ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: left 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    top 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pizza-share-right {
+  --share-x: calc(50% + var(--person-offset));
+}
+
+.pizza-plate {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: sharing-appear 400ms 700ms both;
+}
+
+.pizza-half {
+  display: block;
+  width: 100%;
+  overflow: visible;
+  transform: translateX(15%) scale(0.78);
+  animation: pizza-half-center 1200ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pizza-share-right .pizza-half {
+  transform: translateX(-15%) scale(0.78);
+}
+
+.pizza-share-sector .pizza-half {
+  transform: translateY(12%) scale(0.78);
+}
+
+.lesson-stage-thirds {
+  --person-offset: min(25vw, 260px);
+  --person-width: min(12vw, 145px);
+}
+
+.lesson-stage-thirds .sharing-people:not(.sharing-people-shared) {
+  gap: 1vw;
+}
+
+.lesson-stage.lesson-stage-quarters {
+  --person-offset: min(20vw, 220px);
+  --person-width: min(10vw, 130px);
+}
+
+.lesson-stage-quarters .sharing-people:not(.sharing-people-shared) {
+  gap: 0.75vw;
+}
+
+.lesson-stage-quarters .sharing-people-shared {
+  width: calc(3 * var(--person-offset) + var(--person-width));
+}
+
+.lesson-stage-quarters .pizza-share {
+  width: min(19vw, 28svh, 230px);
+}
+
+.pizza-half-turn {
+  transform-origin: 250px 250px;
+  transform: rotate(var(--cut-rotation));
+  animation: pizza-half-turn 1200ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.half-fraction {
+  position: absolute;
+  top: 103%;
+  left: 50%;
+  display: grid;
+  transform: translateX(-50%);
+  min-width: 0.85em;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5svh, 3.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  text-align: center;
+  animation: sharing-appear 400ms 1000ms both;
+}
+
+.fraction-numerator {
+  padding: 0 0.15em 0.08em;
+  border-bottom: 3px solid var(--fun-purple);
+  color: var(--fun-pink);
+}
+
+.fraction-denominator {
+  padding-top: 0.08em;
+  color: var(--fun-teal);
+}
+
+.fraction-number {
+  position: relative;
+}
+
+.fraction-digit {
+  display: block;
+  width: 100%;
+  border-radius: 0.12em;
+  line-height: inherit;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.pizza-share-featured .half-fraction {
+  pointer-events: auto;
+}
+
+.fraction-digit:hover,
+.fraction-digit:focus-visible {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  transform: scale(1.08);
+}
+
+.chalk-note {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 90px);
+  width: clamp(150px, 20vw, 290px);
+  transform: translateY(-50%);
+  font-family: var(--font-family);
+  font-size: clamp(1rem, 1.8vw, 1.55rem);
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: left;
+  color: var(--fun-teal);
+  pointer-events: none;
+  animation: sharing-appear 600ms ease both;
+}
+
+.chalk-note-numerator {
+  color: var(--fun-pink);
+}
+
+@media (min-width: 641px) {
+  .chalk-note-numerator {
+    top: 0;
+    transform: translateY(-70%);
+  }
+
+  .chalk-note-numerator .chalk-arrow {
+    top: 100%;
+  }
+
+  .chalk-note-denominator {
+    top: 100%;
+    transform: translateY(-10%);
+  }
+
+  .chalk-note-denominator .chalk-arrow {
+    top: 0;
+  }
+
+  .chalk-note-naming.chalk-note-numerator {
+    top: -25%;
+  }
+
+  .chalk-note-naming.chalk-note-denominator {
+    top: 125%;
+  }
+}
+
+.chalk-note-naming.chalk-note-numerator {
+  color: var(--fun-yellow);
+}
+
+.chalk-note-naming.chalk-note-denominator {
+  color: var(--fun-blue);
+}
+
+.chalk-note mark {
+  padding: 0.05em 0.18em;
+  border-radius: 0.2em;
+  background: color-mix(in srgb, currentColor 20%, transparent);
+  color: inherit;
+  font-weight: 700;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.chalk-arrow,
+.chalk-arrow-mobile {
+  position: absolute;
+  right: calc(100% + 8px);
+  top: 50%;
+  width: 88px;
+  height: 50px;
+  transform: translateY(-50%);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 180;
+  animation: chalk-draw 900ms ease both;
+}
+
+.chalk-arrow-echo {
+  opacity: 0.3;
+  stroke-width: 1;
+}
+
+.chalk-arrow-mobile {
+  display: none;
+}
+
+.pizza-remainder {
+  --remainder-opacity: 0.3;
+}
+
+.pizza-remainder .pizza-slice-art {
+  opacity: var(--remainder-opacity);
+  transition: opacity 700ms ease;
+}
+
+.pizza-remainder-faint {
+  --remainder-opacity: 0.09;
+}
+
+.pizza-slice-interactive {
+  pointer-events: none;
+}
+
+.pizza-slice-hit {
+  fill: transparent;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.pizza-slice-interactive:hover,
+.pizza-slice-interactive:focus-visible {
+  outline: none;
+}
+
+.pizza-slice-outline {
+  fill: none;
+  stroke: white;
+  stroke-width: 14;
+  stroke-linejoin: round;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 350ms ease;
+}
+
+.pizza-slice-interactive:hover .pizza-slice-outline,
+.pizza-slice-interactive:focus-visible .pizza-slice-outline,
+.pizza-owned-emphasis .pizza-slice-outline {
+  opacity: 1;
+}
+
+@keyframes chalk-draw {
+  from { stroke-dashoffset: 180; }
+  to { stroke-dashoffset: 0; }
+}
+
+.lesson-stage .pizza-share-featured {
+  left: 36%;
+  top: 57%;
+  width: min(60vw, 65svh, 620px);
+  animation: none;
+}
+
+.pizza-share-featured .half-fraction {
+  top: 50%;
+  left: 108%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(4rem, 12vw, 10rem);
+  animation: sharing-appear 600ms both;
+}
+
+.fraction-question {
+  animation: fraction-question-enter 550ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rolling-pizza {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 0;
+  width: min(65vw, 70svh, 650px);
+  pointer-events: none;
+  animation: pizza-roll-across 1600ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.rolling-pizza svg {
+  display: block;
+  width: 100%;
+  animation: pizza-roll-spin 1600ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.lesson-stage-rolling[data-action="4"] .sharing-people,
+.lesson-stage-rolling[data-action="4"] .pizza-share,
+.lesson-stage-rolling[data-action="4"] .pizza-position,
+.lesson-stage-rolling[data-action="4"] .sharing-question {
+  animation: sharing-depart 650ms ease both;
+}
+
+.lesson-stage-rolling .pizza-share-featured {
+  animation: fraction-scene-arrive 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lesson-stage-rolling .fraction-question {
+  animation-delay: 150ms;
+}
+
+@keyframes pizza-roll-across {
+  from { transform: translate(-110%, -50%); }
+  to { transform: translate(calc(100vw + 10%), -50%); }
+}
+
+@keyframes pizza-roll-spin {
+  from { transform: rotate(-160deg); }
+  to { transform: rotate(200deg); }
+}
+
+@keyframes sharing-depart {
+  to { opacity: 0; }
+}
+
+@keyframes fraction-scene-arrive {
+  from {
+    opacity: 0;
+    transform: translate(-65%, -50%) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes fraction-question-enter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 12px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@keyframes pizza-share-travel {
+  from {
+    left: 28%;
+    top: 61%;
+    width: min(68vw, 52svh, 480px);
+  }
+}
+
+@keyframes pizza-half-center {
+  from { transform: translateX(0); }
+}
+
+@keyframes pizza-half-turn {
+  from { transform: rotate(0deg); }
+}
+
+@keyframes sharing-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.pizza-wheel {
+  display: block;
+  width: min(85vw, 65svh, 600px);
+  height: auto;
+}
+
+.fractions-title {
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: clamp(2.5rem, 12vw, 12rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 1.3;
+}
+
+.fractions-title .title-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.fractions-title .title-word + .title-word {
+  margin-left: 0.22em;
+}
+
+.fractions-title .title-word > span {
+  display: inline-block;
+  transform-origin: center bottom;
+  animation: fraction-letter-pop 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--letter-delay);
+}
+
+@keyframes fraction-letter-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(0.35em) scale(0.45) rotate(-8deg);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(-0.06em) scale(1.08) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+
+@keyframes pizza-appear {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1000px) {
+  .chalk-note {
+    left: calc(100% + 22px);
+    width: 20vw;
+    font-size: 1rem;
+  }
+
+  .chalk-arrow {
+    right: 100%;
+    width: 26px;
+  }
+}
+
+@media (max-width: 640px) {
+  .lesson-stage-explaining {
+    min-height: max(100svh, 780px);
+  }
+
+  .lesson-stage.lesson-stage-explaining .pizza-share-featured {
+    top: 46%;
+    width: 58vw;
+    left: 28%;
+  }
+
+  .lesson-stage-explaining .half-fraction {
+    font-size: 4rem;
+  }
+
+  .chalk-note {
+    top: calc(100% + 25px);
+    left: auto;
+    right: -50px;
+    width: 78vw;
+    transform: none;
+    font-size: 1.05rem;
+  }
+
+  .chalk-note-numerator {
+    top: calc(200% + 155px);
+  }
+
+  .chalk-note-naming.chalk-note-numerator {
+    top: calc(200% + 125px);
+  }
+
+  .chalk-note-naming.chalk-note-denominator {
+    top: calc(100% + 20px);
+  }
+
+  .chalk-arrow {
+    display: none;
+  }
+
+  .chalk-arrow-mobile {
+    display: block;
+    width: 65px;
+    height: 85px;
+    top: -80px;
+    right: 47px;
+    transform: none;
+  }
+
+  .chalk-note-numerator .chalk-arrow-mobile {
+    height: 265px;
+    top: -260px;
+    right: 35px;
+  }
+
+  .lesson-stage-quarters {
+    --person-offset: 24vw;
+    --person-width: min(17vw, 13svh);
+  }
+
+  .lesson-stage-quarters .pizza-share {
+    width: min(22vw, 22svh);
+  }
+
+  .lesson-stage {
+    --person-offset: 23vw;
+    --person-width: min(24vw, 110px, 17svh);
+  }
+
+  .lesson-stage-thirds {
+    --person-offset: 31vw;
+    --person-width: min(20vw, 15svh);
+  }
+
+  .lesson-stage-thirds .pizza-share {
+    width: min(29vw, 25svh);
+  }
+
+  .pizza-position-sharing {
+    left: 50%;
+    top: 51%;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  .sharing-question {
+    top: 21%;
+    font-size: 1.2rem;
+  }
+
+  .sharing-people {
+    top: 81%;
+    left: 50%;
+    gap: 1.5rem;
+  }
+
+  .person-bust {
+    width: var(--person-width);
+  }
+
+  .sharing-people-shared {
+    top: 40%;
+    left: 50%;
+    gap: 0;
+  }
+
+  .sharing-people-shared .sharing-person {
+    transform: scale(1.05);
+  }
+
+  .pizza-share {
+    top: 66%;
+    width: min(42vw, 29svh);
+    animation-name: pizza-share-travel-mobile;
+  }
+
+  .lesson-stage .pizza-share-featured {
+    left: 32%;
+    top: 55%;
+    width: min(66vw, 55svh);
+  }
+
+  @keyframes pizza-share-travel-mobile {
+    from {
+      left: 50%;
+      top: 51%;
+      width: min(68vw, 52svh, 480px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fractions-title .title-word > span,
+  .pizza-entrance,
+  .sharing-question,
+  .sharing-people,
+  .pizza-share,
+  .pizza-half,
+  .pizza-half-turn,
+  .pizza-plate,
+  .fraction-question,
+  .rolling-pizza,
+  .rolling-pizza svg,
+  .half-fraction {
+    animation: none;
+  }
+
+  .chalk-note,
+  .chalk-arrow,
+  .chalk-arrow-mobile,
+  .pizza-remainder {
+    animation: none;
+  }
+
+  .rolling-pizza {
+    display: none;
+  }
+
+  .fractions-title-position,
+  .pizza-position,
+  .pizza-share,
+  .sharing-people,
+  .sharing-person {
+    transition: none;
+  }
+
+  .fraction-digit,
+  .pizza-slice-outline,
+  .pizza-slice-art {
+    transition: none;
+  }
+}

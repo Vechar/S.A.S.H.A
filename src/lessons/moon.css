@@ -1,0 +1,192 @@
+.lesson-stage-everywhere .fractions-title-position {
+  width: 92%;
+}
+
+.lesson-stage-everywhere .fractions-title {
+  display: block;
+  white-space: normal;
+  text-align: center;
+  font-size: clamp(1.8rem, 7.5vw, 7.5rem);
+  line-height: 1.2;
+  animation: practice-enter 800ms ease both;
+}
+
+.lesson-stage-everywhere .fractions-title span {
+  white-space: pre;
+}
+
+.lesson-stage-moon .fractions-title {
+  font-size: clamp(3rem, 9vw, 9rem);
+}
+
+.lesson-stage-moon .fractions-title span { white-space: pre; }
+
+.moon-intro,
+.moon-phase-scene {
+  position: absolute;
+  top: 23%;
+  left: 50%;
+  width: min(92%, 1000px);
+  transform: translateX(-50%);
+  animation: moon-scene-enter 700ms ease both;
+}
+
+.moon-intro {
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+}
+
+.moon-intro h2,
+.moon-phase-copy h2 { font-size: clamp(1.7rem, 3vw, 2.8rem); }
+
+.moon-intro > p { max-width: 760px; margin: auto; }
+.moon-intro mark {
+  color: var(--color-text);
+  background: var(--color-tint);
+  padding: 0.1em 0.3em;
+  border-radius: 5px;
+}
+
+.moon-phase-strip {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 0.8rem 0;
+}
+
+.moon-phase-strip img { width: 100%; height: auto; border-radius: 50%; }
+.moon-phase-strip span { display: block; font-size: 0.75rem; }
+.moon-phase-strip figcaption { display: none; }
+
+.moon-phase-scene {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+.moon-picture { text-align: center; min-width: 0; }
+.moon-picture img { width: 100%; height: auto; border-radius: 50%; }
+.moon-picture figcaption,
+.moon-credit { font-size: 0.75rem; color: var(--color-text-muted); }
+.moon-picture a:hover,
+.moon-credit:hover { text-decoration: underline; }
+.moon-phase-copy { display: grid; gap: 1rem; }
+.moon-eyebrow { font-size: 0.75rem; letter-spacing: 0.12em; color: var(--fun-purple); }
+.moon-amount { font-size: clamp(1.4rem, 3vw, 2rem); color: var(--fun-teal); font-weight: 700; }
+.moon-note { color: var(--color-text-muted); font-size: 0.9rem; }
+
+.moon-direction-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.moon-direction-strip > div { position: relative; }
+.moon-direction-strip figcaption { display: none; }
+.moon-direction-arrow { position: absolute; right: -1.2rem; top: 40%; color: var(--fun-teal); }
+
+.lesson-stage-moon:has(.moon-matching, .moon-today) {
+  display: block;
+  padding: max(160px, 22svh) 1rem 3rem;
+}
+
+.lesson-stage-moon:has(.moon-matching, .moon-today) .fractions-title-position-top {
+  top: 80px;
+}
+
+.moon-matching {
+  max-width: 680px;
+  margin: auto;
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+  animation: practice-enter 650ms ease both;
+}
+
+.moon-matching h2 { font-size: 2rem; }
+.moon-matching form { display: grid; gap: 1.5rem; justify-items: center; }
+.moon-match-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  column-gap: 1.5rem;
+  width: 100%;
+  min-width: 0;
+  padding: 1rem 1.5rem 1.5rem;
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--border-radius);
+  background: var(--color-surface);
+  text-align: left;
+}
+.moon-match-card legend { padding: 0 0.4rem; color: var(--fun-purple); }
+.moon-match-card .moon-picture { grid-row: 1 / span 2; width: min(24svh, 210px); max-width: 100%; margin: auto; }
+.moon-match-card figcaption { font-size: 0.65rem; }
+.moon-match-card label { grid-column: 2; display: grid; gap: 0.35rem; margin-top: 0.7rem; font-size: 0.85rem; }
+.moon-match-card select {
+  width: 100%;
+  min-width: 0;
+  padding: 0.8rem;
+  border: 1px solid var(--color-glass-strong);
+  border-radius: 6px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+}
+.moon-matching .practice-feedback-area { min-height: 4rem; }
+
+.moon-today {
+  max-width: 560px;
+  margin: auto;
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  text-align: center;
+  animation: practice-enter 650ms ease both;
+}
+.moon-today h2 { font-size: 2rem; }
+.moon-today h3 { font-size: 1.5rem; }
+.moon-today .moon-picture { width: min(38svh, 300px); max-width: 100%; }
+.moon-today [role="alert"] { display: grid; gap: 1rem; justify-items: center; }
+.lesson-stage-ending .fractions-title-position-top { top: 35%; }
+.moon-ending {
+  position: absolute;
+  top: 55%;
+  width: 90%;
+  left: 5%;
+  display: grid;
+  justify-items: center;
+  gap: 2rem;
+  text-align: center;
+  animation: practice-enter 650ms ease both;
+}
+
+@keyframes moon-scene-enter {
+  from { opacity: 0; transform: translate(-50%, 24px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@media (max-width: 640px) {
+  .lesson-stage-moon { min-height: max(100svh, 850px); }
+  .moon-intro,
+  .moon-phase-scene { top: 19%; }
+  .moon-phase-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .moon-phase-scene { grid-template-columns: 1fr; gap: 1.2rem; text-align: center; }
+  .moon-phase-scene .moon-picture { width: min(65vw, 300px); margin: auto; }
+  .moon-direction-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 0; }
+  .moon-direction-strip > div > span:not(.moon-direction-arrow) { font-size: 0.8rem; }
+  .moon-direction-arrow { display: none; }
+  .moon-match-card { display: block; padding: 0.8rem; }
+  .moon-match-card select { font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moon-intro,
+  .moon-phase-scene,
+  .moon-matching,
+  .moon-today,
+  .moon-ending,
+  .lesson-stage-everywhere .fractions-title { animation: none; }
+}

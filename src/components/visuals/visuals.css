@@ -1,0 +1,107 @@
+/* ═══ VISUALS — circles, bars, number line, fractions ═══ */
+
+/* Circle */
+.fraction-circle {
+  max-width: 100%;
+  height: auto;
+}
+
+.fraction-circle .sector {
+  fill: var(--viz-empty);
+  stroke: var(--viz-stroke);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  transition: fill 0.2s ease;
+}
+
+.fraction-circle.interactive .sector { cursor: pointer; }
+.fraction-circle.interactive .sector:hover { opacity: 0.85; }
+.fraction-circle.interactive .sector:focus-visible { outline: none; stroke: var(--color-secondary); stroke-width: 5; }
+
+/* Bar */
+.fraction-bar {
+  display: flex;
+  width: 100%;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--viz-stroke);
+}
+
+.bar-piece {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: var(--viz-empty);
+  transition: background-color 0.2s ease;
+}
+
+.fraction-bar.interactive .bar-piece { cursor: pointer; }
+.fraction-bar.interactive .bar-piece:hover { opacity: 0.85; }
+
+.bar-piece-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.bar-piece.on .bar-piece-label { color: var(--color-text-inverse); }
+
+/* Stacked fraction */
+.frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1;
+  vertical-align: middle;
+  font-variant-numeric: tabular-nums;
+}
+
+.frac-line {
+  width: 100%;
+  min-width: 1em;
+  height: 0.08em;
+  margin: 0.1em 0;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.frac-xs { font-size: 0.85rem; }
+.frac-sm { font-size: 1.05rem; }
+.frac-md { font-size: 1.6rem; }
+.frac-lg { font-size: 2.6rem; }
+.frac-xl { font-size: 4rem; }
+
+/* Number line */
+.number-line {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  touch-action: none;
+  user-select: none;
+}
+
+.number-line.interactive { cursor: pointer; }
+
+.nl-axis { stroke: var(--viz-empty); stroke-width: 6; stroke-linecap: round; }
+.nl-progress { stroke-width: 6; stroke-linecap: round; }
+.nl-tick { stroke: var(--viz-line); stroke-width: 2; stroke-linecap: round; }
+.nl-tick.whole { stroke: var(--color-text); stroke-width: 3; }
+.nl-tick.hl { stroke: var(--color-success); stroke-width: 5; }
+
+.nl-label {
+  fill: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  text-anchor: middle;
+}
+
+.nl-label.big { fill: var(--color-text); font-family: var(--font-display); font-size: 24px; font-weight: 600; }
+
+.nl-marker { transition: transform 0.12s ease-out; }
+.nl-marker-dot { fill: var(--color-bg); }
